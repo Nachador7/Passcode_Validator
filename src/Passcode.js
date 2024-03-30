@@ -99,13 +99,20 @@ const Passcode = ({ codeList, sumNumbersInArray }) => {
       // Ustawiamy nową tablicę wartości wprowadzonych
       setCode(newCode);
   
-      // Przesuwamy fokus do ostatniego wypełnionego pola wejściowego +1
-      inputRefs.current[lastFilledIndex + 1]?.focus();
+      // Przesuwamy fokus do ostatniego wypełnionego pola wejściowego +1, lub na ostatni input
+      const nextIndex = lastFilledIndex + 1;
+      if (nextIndex < code.length) {
+        inputRefs.current[nextIndex]?.focus();
+      } else {
+        inputRefs.current[code.length - 1]?.focus();
+      }
+  
       setShowErrorMessage(false); // Ukrywamy komunikat, gdy wklejony tekst zawiera tylko cyfry
     } else {
       setShowErrorMessage(true); // Wyświetlamy komunikat, gdy wklejony tekst zawiera coś innego niż cyfry
     }
   };
+  
   
   const handleButtonClick = () => {
     setShowErrorMessage(false);
@@ -176,7 +183,7 @@ const Passcode = ({ codeList, sumNumbersInArray }) => {
     <div>
     <div className="passcode-container">
       <div className="passcode-title">
-      <h3>Wprowadź passcode:</h3>
+      <h3>{`Wprowadź ${sum} cyfrowy passcode:`}</h3>
       </div>
       <div className="passcode-inputs">
         {generateInputs()}
