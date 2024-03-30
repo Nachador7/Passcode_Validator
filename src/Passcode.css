@@ -1,25 +1,69 @@
 .passcode-container {
-    font-family: Arial, sans-serif;
-  }
-  
-  .passcode-inputs {
-    display: flex;
-  }
-  
-  .passcode-input {
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
-    text-align: center;
-    margin-right: 10px;
-   
-  }
-  
-  .passcode-input:last-child {
-    margin-right: 0;
-  }
-  .error-message {
-    color: red;
-    padding-top: 8px;
-  }
-  
+  width: 100%;
+  padding-top: 1px;
+  padding-bottom: 1rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.passcode-title {
+  display: flex;
+  justify-content: center;
+}
+
+.passcode-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.passcode-input {
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  text-align: center;
+  margin-right: 5px;
+  margin-left: 5px;
+  margin-bottom: 10px;
+}
+.passcode-message {
+  display: flex;
+  justify-content: center;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+.passcode-button {
+  display: flex;
+  justify-content: flex-end ;
+  padding-top: 1rem;
+}
+
+.error-message {
+  font-size: large;
+  color: red;
+  padding-top: 8px;
+  font-weight: bold;
+}
+
+.separators {
+  size: 10px;
+  width: 40px;
+  height: 40px;
+  font-size: 40px;
+  text-align: center;
+  margin-right: 5px;
+  margin-left: 5px;
+  margin-bottom: 10px;
+}
+button {
+  color: white;
+  background: black;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.7);
+  height: 3rem;
+  width: 7rem;
+  font-size: 17px;
+}

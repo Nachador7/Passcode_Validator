@@ -2,29 +2,35 @@ import React, { useState, useRef} from 'react';
 import './Passcode.css';
 
 const Passcode = ({ codeList, sumNumbersInArray }) => {
-  const [code, setCode] = useState(Array(sumNumbersInArray(codeList)).fill(''));
+  const sum = sumNumbersInArray(codeList);
+  const [code, setCode] = useState(Array(sum).fill(''));
   const [showErrorMessage, setShowErrorMessage] = useState(false);
   const inputRefs= useRef([]);
 
 
   const handleChange = (e, index) => {
     const { value } = e.target;
-    // Sprawdź, czy wprowadzany znak jest cyfrą
+  
+    // Check if the value is composed of digits only
     if (/^\d*$/.test(value)) {
       const newCode = [...code];
       newCode[index] = value;
       setCode(newCode);
       setShowErrorMessage(false);
       
-      // Przenieś fokus na następne pole wejściowe, jeśli to możliwe
+      // Move focus to the next input field, if possible
       const nextIndex = index + 1;
       if (nextIndex < inputRefs.current.length) {
-        inputRefs.current[nextIndex].focus();
+        // Add a null check before focusing
+        if (inputRefs.current[nextIndex]) {
+          inputRefs.current[nextIndex].focus();
+        }
       }
     } else {
       setShowErrorMessage(true);
     }
   };
+  
 
   const handleBackspace = (event, index) => {
     setShowErrorMessage(false)
@@ -101,6 +107,30 @@ const Passcode = ({ codeList, sumNumbersInArray }) => {
     }
   };
   
+  const handleButtonClick = () => {
+    setShowErrorMessage(false);
+  
+    // Sprawdź, czy wszystkie pola wejściowe są wypełnione
+    if (code.every(item => item !== '')) {
+      let passcodeString = '';
+      let currentIndex = 0;
+  
+      codeList.forEach((item) => {
+        if (typeof item === 'number') {
+          const endIndex = currentIndex + item;
+          passcodeString += code.slice(currentIndex, endIndex).join('');
+          currentIndex = endIndex;
+        } else {
+          passcodeString += item;
+        }
+      });
+  
+      alert("Twój passcode to: " + passcodeString);
+    } else {
+      // Wyświetl komunikat o błędzie, jeśli nie wszystkie pola są wypełnione
+      alert('Wypełnij wszystkie pola!');
+    }
+  };
   
 
 
@@ -110,8 +140,7 @@ const Passcode = ({ codeList, sumNumbersInArray }) => {
     const inputs = codeList.map((item, itemIndex) => {
       if (typeof item === 'number') {
         const inputArray = Array.from({ length: item }, (_, i) => {
-          const currentIndex = index;
-          index++;
+          const currentIndex = index + i;
           return (
             <input
               key={`${itemIndex}-${i}`}
@@ -132,9 +161,10 @@ const Passcode = ({ codeList, sumNumbersInArray }) => {
             />
           );
         });
+        index += item;
         return inputArray;
       } else {
-        return <span key={itemIndex}>{item}</span>;
+        return <span className="separators" key={itemIndex}>{item}</span>;
       }
     });
   
@@ -143,11 +173,21 @@ const Passcode = ({ codeList, sumNumbersInArray }) => {
   
 
   return (
+    <div>
     <div className="passcode-container">
+      <div className="passcode-title">
+      <h3>Wprowadź passcode:</h3>
+      </div>
       <div className="passcode-inputs">
         {generateInputs()}
       </div>
-      {showErrorMessage && <div className="error-message">Only numbers allowed!</div>}
+      <div className="passcode-message">
+        {showErrorMessage && <div className="error-message">Tylko cyfry dozwolone!</div>}
+        </div>
+    </div>
+    <div className="passcode-button">
+    <button onClick={handleButtonClick}>Sprawdź</button>
+    </div>
     </div>
   );
 };

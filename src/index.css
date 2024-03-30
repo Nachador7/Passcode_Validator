@@ -1,14 +1,17 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Lato", sans-serif;
+  font-weight: 100;
+  font-style: normal;
   display: flex;
   justify-content: center;
-  height: 100vh;
+  height: 100%;
+  
   padding-top: 60px;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  background: rgb(63,119,251);
+background: radial-gradient(circle, rgba(63,119,251,1) 0%, rgba(56,217,245,1) 100%);
 
 }
 
