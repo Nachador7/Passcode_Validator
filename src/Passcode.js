@@ -7,21 +7,17 @@ const Passcode = ({ codeList, sumNumbersInArray }) => {
   const [showErrorMessage, setShowErrorMessage] = useState(false);
   const inputRefs= useRef([]);
 
-
   const handleChange = (e, index) => {
     const { value } = e.target;
-  
-    // Check if the value is composed of digits only
+
     if (/^\d*$/.test(value)) {
       const newCode = [...code];
       newCode[index] = value;
       setCode(newCode);
       setShowErrorMessage(false);
       
-      // Move focus to the next input field, if possible
       const nextIndex = index + 1;
       if (nextIndex < inputRefs.current.length) {
-        // Add a null check before focusing
         if (inputRefs.current[nextIndex]) {
           inputRefs.current[nextIndex].focus();
         }
@@ -30,7 +26,6 @@ const Passcode = ({ codeList, sumNumbersInArray }) => {
       setShowErrorMessage(true);
     }
   };
-  
 
   const handleBackspace = (event, index) => {
     setShowErrorMessage(false)
@@ -47,9 +42,7 @@ const Passcode = ({ codeList, sumNumbersInArray }) => {
       const newCode = [...code];
       newCode[index - 1] = '';
       setCode(newCode);
-      // setTimeout(() => {
-        inputRefs.current[index - 1].focus();
-      // }, 0);
+      inputRefs.current[index - 1].focus();
       
     } 
     // Jeśli klawisz Backspace jest naciśnięty w polu, które ma wartość, usuń tę wartość
@@ -71,8 +64,8 @@ const Passcode = ({ codeList, sumNumbersInArray }) => {
   };
   
   const handlePaste = (event, index) => {
-    event.preventDefault(); // Zapobiegamy domyślnej akcji wklejania
-  
+    event.preventDefault();
+
     // Pobieramy wklejony tekst
     const pastedText = event.clipboardData.getData('text');
   
@@ -87,7 +80,7 @@ const Passcode = ({ codeList, sumNumbersInArray }) => {
       // Zmienna do przechowania indeksu ostatniego wypełnionego pola
       let lastFilledIndex = index;
   
-      // Wypełniamy kolejne pola wejściowe wklejonymi znakami, począwszy od bieżącego indeksu
+      // Wypełniamy kolejne pola wejściowe wklejonymi znakami, od bieżącego indeksu
       for (let i = 0; i < pastedChars.length; i++) {
         const newIndex = index + i;
         if (newIndex < code.length) {
@@ -95,10 +88,9 @@ const Passcode = ({ codeList, sumNumbersInArray }) => {
           lastFilledIndex = newIndex; // Aktualizujemy indeks ostatniego wypełnionego pola
         }
       }
-  
       // Ustawiamy nową tablicę wartości wprowadzonych
       setCode(newCode);
-  
+
       // Przesuwamy fokus do ostatniego wypełnionego pola wejściowego +1, lub na ostatni input
       const nextIndex = lastFilledIndex + 1;
       if (nextIndex < code.length) {
@@ -106,13 +98,11 @@ const Passcode = ({ codeList, sumNumbersInArray }) => {
       } else {
         inputRefs.current[code.length - 1]?.focus();
       }
-  
-      setShowErrorMessage(false); // Ukrywamy komunikat, gdy wklejony tekst zawiera tylko cyfry
+      setShowErrorMessage(false);
     } else {
-      setShowErrorMessage(true); // Wyświetlamy komunikat, gdy wklejony tekst zawiera coś innego niż cyfry
+      setShowErrorMessage(true);
     }
   };
-  
   
   const handleButtonClick = () => {
     setShowErrorMessage(false);
@@ -131,16 +121,12 @@ const Passcode = ({ codeList, sumNumbersInArray }) => {
           passcodeString += item;
         }
       });
-  
       alert("Twój passcode to: " + passcodeString);
     } else {
-      // Wyświetl komunikat o błędzie, jeśli nie wszystkie pola są wypełnione
       alert('Wypełnij wszystkie pola!');
     }
   };
   
-
-
   const generateInputs = () => {
     let index = 0;
   
@@ -178,7 +164,6 @@ const Passcode = ({ codeList, sumNumbersInArray }) => {
     return inputs.flat();
   };
   
-
   return (
     <div>
     <div className="passcode-container">

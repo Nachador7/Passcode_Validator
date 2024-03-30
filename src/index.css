@@ -6,12 +6,11 @@ body {
   display: flex;
   justify-content: center;
   height: 100%;
-  
-  padding-top: 9rem;
+  padding-top: 9 rem;
   padding-left: 3rem;
   padding-right: 3rem;
   background: rgb(63,119,251);
-background: radial-gradient(circle, rgba(63,119,251,1) 0%, rgba(56,217,245,1) 100%);
+  background: radial-gradient(circle, rgba(63,119,251,1) 0%, rgba(56,217,245,1) 100%);
 
 }
 

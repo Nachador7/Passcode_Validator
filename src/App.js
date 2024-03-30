@@ -7,9 +7,7 @@ const App = () => {
 
   const sumNumbersInArray = (arr) => {
     const numbers = arr.filter(item => typeof item === 'number');
-
     const sum = numbers.reduce((acc, curr) => acc + curr, 0);
-
     return sum;
   }
 
