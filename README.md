@@ -77,4 +77,4 @@ Aktualnie brak znanych problemów.
 
 ## Licencja
 
-Ten projekt jest udostępniany na licencji MIT - szczegóły znajdziesz w pliku [LICENSE](LICENSE).
+Ten projekt jest udostępniany na licencji MIT
