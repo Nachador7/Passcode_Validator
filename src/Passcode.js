@@ -1,10 +1,10 @@
 import React, { useState, useRef} from 'react';
 import './Passcode.css';
 
-const Passcode = ({ codeList }) => {
-  const [code, setCode] = useState([]);
+const Passcode = ({ codeList, sumNumbersInArray }) => {
+  const [code, setCode] = useState(Array(sumNumbersInArray(codeList)).fill(''));
   const [showErrorMessage, setShowErrorMessage] = useState(false);
-  const inputRefs = useRef([]);
+  const inputRefs= useRef([]);
 
 
   const handleChange = (e, index) => {
