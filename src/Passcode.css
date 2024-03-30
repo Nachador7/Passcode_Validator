@@ -1,0 +1,25 @@
+.passcode-container {
+    font-family: Arial, sans-serif;
+  }
+  
+  .passcode-inputs {
+    display: flex;
+  }
+  
+  .passcode-input {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    text-align: center;
+    margin-right: 10px;
+   
+  }
+  
+  .passcode-input:last-child {
+    margin-right: 0;
+  }
+  .error-message {
+    color: red;
+    padding-top: 8px;
+  }
+  
