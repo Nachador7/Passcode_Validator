@@ -65,16 +65,6 @@ const App = () => {
 export default App;
 ```
 
-## Znane Problemy
-
-Aktualnie brak znanych problemów.
-
-## Propozycje na Przyszłość
-
-- Dodanie wsparcia dla niestandardowych komunikatów błędów.
-- Poprawa funkcji dostępności.
-- Rozbudowa opcji stylizacji.
-
 ## Licencja
 
 Ten projekt jest udostępniany na licencji MIT
