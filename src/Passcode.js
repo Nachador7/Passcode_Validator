@@ -65,14 +65,17 @@ const Passcode = ({ codeList, sumNumbersInArray }) => {
   
   const handlePaste = (event, index) => {
     event.preventDefault();
-
+  
     // Pobieramy wklejony tekst
     const pastedText = event.clipboardData.getData('text');
   
-    // Sprawdzamy czy wklejony tekst zawiera tylko cyfry
-    if (/^\d+$/.test(pastedText)) {
+    // Usuwamy wszystkie znaki niebędące cyframi z wklejonego tekstu
+    const pastedDigits = pastedText.replace(/\D/g, '');
+  
+    // Sprawdzamy czy ostateczny wklejony tekst zawiera jakieś cyfry
+    if (pastedDigits.length > 0) {
       // Podziel wklejony tekst na pojedyncze znaki
-      const pastedChars = pastedText.split('');
+      const pastedChars = pastedDigits.split('');
   
       // Tworzymy nową tablicę z wartościami wprowadzonymi przez wklejanie
       const newCode = [...code];
@@ -90,7 +93,7 @@ const Passcode = ({ codeList, sumNumbersInArray }) => {
       }
       // Ustawiamy nową tablicę wartości wprowadzonych
       setCode(newCode);
-
+  
       // Przesuwamy fokus do ostatniego wypełnionego pola wejściowego +1, lub na ostatni input
       const nextIndex = lastFilledIndex + 1;
       if (nextIndex < code.length) {
@@ -103,6 +106,7 @@ const Passcode = ({ codeList, sumNumbersInArray }) => {
       setShowErrorMessage(true);
     }
   };
+  
   
   const handleButtonClick = () => {
     setShowErrorMessage(false);
