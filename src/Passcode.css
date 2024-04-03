@@ -12,11 +12,13 @@
   justify-content: center;
 }
 
-.passcode-inputs {
+.passcode-section {
   display: flex;
   flex-wrap: wrap;
   padding-left: 1rem;
   padding-right: 1rem;
+  display: flex;
+  justify-content: center;
 }
 
 .passcode-input {
@@ -48,14 +50,14 @@
   font-weight: bold;
 }
 
-.separators {
+.passcode-separator {
   size: 10px;
-  width: 40px;
-  height: 40px;
+  /* width: 40px;
+  height: 40px; */
   font-size: 40px;
   text-align: center;
-  margin-right: 5px;
-  margin-left: 5px;
+  /* margin-right: 5px;
+  margin-left: 5px; */
   margin-bottom: 10px;
 }
 button {

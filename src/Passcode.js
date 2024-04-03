@@ -159,9 +159,21 @@ const Passcode = ({ codeList, sumNumbersInArray }) => {
           );
         });
         index += item;
-        return inputArray;
+        return (
+          <div className='passcode-section' key={`section-${itemIndex}`}>
+            <div className='passcode-numbers-imputs'>
+              {inputArray}
+            </div>
+          </div>
+          );
       } else {
-        return <span className="separators" key={itemIndex}>{item}</span>;
+        return (
+          <div className="passcode-section" key={`section-${itemIndex}`}>
+            <div className="passcode-separator">
+              {item}
+            </div>
+          </div>
+        );
       }
     });
   
@@ -174,9 +186,7 @@ const Passcode = ({ codeList, sumNumbersInArray }) => {
       <div className="passcode-title">
       <h3>{`Wprowadź ${sum} cyfrowy passcode:`}</h3>
       </div>
-      <div className="passcode-inputs">
         {generateInputs()}
-      </div>
       <div className="passcode-message">
         {showErrorMessage && <div className="error-message">Tylko cyfry dozwolone!</div>}
         </div>
